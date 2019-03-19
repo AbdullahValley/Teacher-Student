@@ -21,8 +21,9 @@ Route::get('/register', 'UserController@create')->name('register');
 Route::POST('/register', 'UserController@store');
 
 
+Route::get('/login', 'UserController@login_form')->name('login');
 
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+Route::POST('/login', 'UserController@login');
+
+Route::POST('/logout', 'UserController@logout');
 

@@ -24,7 +24,7 @@ class UserController extends Controller
 
         $this->validate($request, [
             'name'      => 'required',
-            'email'     => 'required|email|unique:users',
+            'email'     => 'required|email|unique:teachers|unique:students',
             'password'  => 'required|min:8|confirmed',
             'role'      => 'required'
         ]);
@@ -61,14 +61,6 @@ class UserController extends Controller
             return view('404');
         }
 
-/*        return User::create([
-            'name' => $data['name'],
-            'role' => $data['role'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);*/
-
-        dd($request);
     }
 
     public function show($id)
@@ -89,5 +81,90 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login_form()
+    {
+        return view('auth.login');
+    }
+
+    public function login(Request $request)
+    {
+        $this->validate($request, [
+            'email'     => 'required|email|string',
+            'password'  => 'required|min:8|string',
+            'role'      => 'required'
+        ]);
+
+
+        if ($request->role == 1){
+
+            $teacher = Teacher::where('email', $request->email)
+                ->where('status', 1)
+                ->first();
+
+            if ($teacher == NULL){
+
+                return redirect('/login')->with('successMsg', 'Teacher. Email Does Not Match !');
+            }
+
+            else{
+
+                $validPassword = Hash::check($request->password, $teacher->password);
+
+                if($validPassword == TRUE){
+
+                    return view('teacher.index')->with('successMsg', 'Teacher ! You Login Successfully.');
+                }
+
+                else{
+                    return redirect('/login')->with('successMsg', 'Teacher. Login Failed !');
+                }
+
+            }
+
+
+        }
+        elseif($request->role == 2)
+        {
+            $student = Student::where('email', $request->email)
+                ->where('status', 1)
+                ->first();
+
+
+            if ($student == NULL){
+
+                return redirect('/login')->with('successMsg', 'Student. Email Does Not Match !');
+            }
+
+            else{
+
+                $validPassword = Hash::check($request->password, $student->password);
+
+                if($validPassword == TRUE){
+
+                    return view('student.index')->with('successMsg', 'Student ! You Login Successfully.');
+                }
+
+                else{
+                    return redirect('/login')->with('successMsg', 'Student. Login Failed !');
+                }
+            }
+
+
+        }
+
+        else{
+
+            return view('404');
+        }
+
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+
+        return redirect('/login')->with('successMsg', 'Logout Successfully !');
     }
 }

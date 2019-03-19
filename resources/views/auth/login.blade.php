@@ -16,8 +16,27 @@
                             <br><br>
                         @endif
 
-                        <form method="POST" action="{{ route('login') }}">
+                        <form method="POST" action="{{ action('UserController@login') }}">
                             @csrf
+
+                            <div class="form-group row">
+
+                                <label for="role" class="col-md-4 col-form-label text-md-right">{{ __('Role') }}</label>
+                                <div class="col-md-6">
+
+                                    <select name="role" id="role" class="form-control{{ $errors->has('role') ? ' is-invalid' : '' }}" required autofocus>
+                                        <option value="">Select Role</option>
+                                        <option value="1">Teacher</option>
+                                        <option value="2">Student</option>
+                                    </select>
+
+                                    @if ($errors->has('role'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
 
                             <div class="form-group row">
                                 <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
