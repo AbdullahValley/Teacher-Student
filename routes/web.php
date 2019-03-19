@@ -16,13 +16,13 @@ Route::get('/', function () {
 });
 
 
-Route::get('/register', function () {
-    return view('auth.register');
-});
+Route::get('/register', 'UserController@create')->name('register');
+
+Route::POST('/register', 'UserController@store');
 
 
 
 Route::get('/login', function () {
     return view('auth.login');
-});
+})->name('login');
 
