@@ -25,5 +25,13 @@ Route::get('/login', 'UserController@login_form')->name('login');
 
 Route::POST('/login', 'UserController@login');
 
-Route::POST('/logout', 'UserController@logout');
+Route::get('/logout', 'UserController@logout');
+
+//Route::get('/student', 'StudentController@index');
+
+Route::get('/teacher', 'TeacherController@index');
+
+Route::resource('student', 'StudentController')->middleware('checkStudent');
+
+Route::resource('teacher', 'TeacherController')->middleware('checkTeacher');
 

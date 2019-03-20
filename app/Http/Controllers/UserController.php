@@ -6,6 +6,7 @@ use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -114,7 +115,9 @@ class UserController extends Controller
 
                 if($validPassword == TRUE){
 
-                    return view('teacher.index')->with('successMsg', 'Teacher ! You Login Successfully.');
+                    Session::put('teacher_id', $teacher->id);
+
+                    return redirect('/teacher');
                 }
 
                 else{
@@ -143,7 +146,9 @@ class UserController extends Controller
 
                 if($validPassword == TRUE){
 
-                    return view('student.index')->with('successMsg', 'Student ! You Login Successfully.');
+                    Session::put('student_id', $student->id);
+
+                    return redirect('/student');
                 }
 
                 else{
