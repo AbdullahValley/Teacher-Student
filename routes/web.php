@@ -30,8 +30,4 @@ Route::resource('student', 'StudentController')->middleware('checkStudent');
 
 Route::resource('teacher', 'TeacherController')->middleware('checkTeacher');
 
-Route::group(['middleware'=>['checkTeacher' OR 'checkStudent']],function () {
-
-    Route::resource('routine', 'RoutineController');
-
-});
+Route::resource('routine', 'RoutineController')->middleware('checkRoutine');
