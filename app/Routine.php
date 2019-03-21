@@ -6,5 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Routine extends Model
 {
-    //
+    protected $fillable = ['teacher_id'];
+
 }

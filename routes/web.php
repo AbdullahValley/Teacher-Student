@@ -15,7 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
 Route::get('/register', 'UserController@create')->name('register');
 
 Route::POST('/register', 'UserController@store');
@@ -27,11 +26,12 @@ Route::POST('/login', 'UserController@login');
 
 Route::get('/logout', 'UserController@logout');
 
-//Route::get('/student', 'StudentController@index');
-
-Route::get('/teacher', 'TeacherController@index');
-
 Route::resource('student', 'StudentController')->middleware('checkStudent');
 
 Route::resource('teacher', 'TeacherController')->middleware('checkTeacher');
 
+Route::group(['middleware'=>['checkTeacher' OR 'checkStudent']],function () {
+
+    Route::resource('routine', 'RoutineController');
+
+});

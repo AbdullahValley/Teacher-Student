@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Student;
+use App\Teacher;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +13,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('student.index')->with('successMsg', 'Student ! You Login Successfully.');
+        $teachers = Teacher::orderBy('id', 'desc')->get();
+        return view('student.index', compact('teachers'))->with('successMsg', 'Student ! You Login Successfully.');
     }
 
 

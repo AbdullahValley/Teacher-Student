@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-@include('student.layouts.head')
+@include('teacher.layouts.head')
 
 <body class="nav-md">
 <div class="container body">
@@ -10,7 +10,7 @@
         <div class="col-md-3 left_col">
             <div class="left_col scroll-view">
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="#" class="site_title"><i class="fa fa-empire"></i> <span>Student Portal</span></a>
+                    <a href="#" class="site_title"><i class="fa fa-empire"></i> <span>Teacher Portal</span></a>
                 </div>
 
                 <div class="clearfix"></div>
@@ -19,7 +19,7 @@
                 <div class="profile clearfix">
 
                     <div class="profile_info" align="center">
-                        <span>Welcome, Student</span>
+                        <span>Welcome, Teacher</span>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -29,7 +29,7 @@
                 <!-- sidebar menu -->
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
-                    @include('student.layouts.sidebar')
+                    @include('teacher.layouts.sidebar')
 
                 </div>
                 <!-- /sidebar menu -->
@@ -42,7 +42,7 @@
             <div class="nav_menu">
                 <nav>
 
-                    @include('student.layouts.navbar')
+                    @include('teacher.layouts.navbar')
 
                 </nav>
             </div>
@@ -60,7 +60,7 @@
         <!-- footer content -->
         <footer>
             <div class="pull-right">
-                &copy; 2019 Students. All Rights Reserved.
+                &copy; 2019 Teachers. All Rights Reserved.
             </div>
             <div class="clearfix"></div>
         </footer>
@@ -68,6 +68,6 @@
 
     </div>
 </div>
-@include('student.layouts.footer')
+@include('teacher.layouts.footer')
 </body>
 </html>

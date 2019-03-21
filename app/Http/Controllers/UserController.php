@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Routine;
 use App\Student;
 use App\Teacher;
 use Illuminate\Http\Request;
@@ -40,6 +41,8 @@ class UserController extends Controller
             $teacher->password = Hash::make($request->password);
 
             $teacher->save();
+
+            Routine::create(['teacher_id' => $teacher->id]);
 
             return redirect('login')->with('successMsg', 'Teacher ! Your Registration Completed Successfully.');
         }
