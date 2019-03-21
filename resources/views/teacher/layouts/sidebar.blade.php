@@ -32,8 +32,8 @@
     <ul class="nav side-menu">
         <li><a><i class="fa fa-desktop"></i> Counselling Time<span class="fa fa-chevron-down"></span></a>
             <ul class="nav child_menu">
-                <li><a href="{{ url('/student') }}">Add Counselling Time</a></li>
-                <li><a href="{{ url('/teacher/'.Session::get('teacher_id').'/edit') }}">Counselling Schedules</a></li>
+                <li><a href="{{ url('/council/create') }}">Add Counselling Time</a></li>
+                <li><a href="{{ url('/teacher') }}">Counselling Schedules</a></li>
             </ul>
         </li>
 

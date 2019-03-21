@@ -31,3 +31,7 @@ Route::resource('student', 'StudentController')->middleware('checkStudent');
 Route::resource('teacher', 'TeacherController')->middleware('checkTeacher');
 
 Route::resource('routine', 'RoutineController')->middleware('checkRoutine');
+
+Route::resource('council', 'CouncilController')->middleware('checkRoutine');
+
+

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Council;
 use App\Teacher;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
@@ -11,7 +12,8 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return view('teacher.index')->with('successMsg', 'Teacher ! You Login Successfully.');
+        $councils = Council::orderBy('id', 'desc')->where('teacher_id', session()->get('teacher_id'))->get();
+        return view('teacher.index', compact('councils'))->with('successMsg', 'Teacher ! You Login Successfully.');
     }
 
     public function create()
