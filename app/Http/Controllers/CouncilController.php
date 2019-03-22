@@ -42,7 +42,8 @@ class CouncilController extends Controller
 
     public function show($id)
     {
-        //
+        $councils = Council::orderBy('id', 'desc')->where('teacher_id', $id)->get();
+        return view ('student.council', compact('councils'));
     }
 
     public function edit($id)

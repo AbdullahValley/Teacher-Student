@@ -30,8 +30,12 @@ Route::resource('student', 'StudentController')->middleware('checkStudent');
 
 Route::resource('teacher', 'TeacherController')->middleware('checkTeacher');
 
+Route::get('routine/{id}/edit', 'RoutineController@edit')->middleware('checkTeacher');
+
 Route::resource('routine', 'RoutineController')->middleware('checkRoutine');
 
 Route::resource('council', 'CouncilController')->middleware('checkRoutine');
+
+Route::get('/council/create', 'CouncilController@create')->middleware('checkTeacher');
 
 
